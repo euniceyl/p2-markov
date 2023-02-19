@@ -67,7 +67,7 @@ public class WordGram {
 		WordGram other = (WordGram) o;
 		// TODO complete correct implementation of equals (above is correct)
 		
-		if (other.myWords.length == this.myWords.length) {
+		if (other.length() == this.myWords.length) {
 			for (int i=0; i<myWords.length; i++) {
 				if (other.wordAt(i).equals(this.myWords[i])) {
 					return true;
