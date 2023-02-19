@@ -3,7 +3,7 @@
  * sequence of words.
  * For use in Compsci 201, Duke University, Fall 2022
  * Add yourself as an author when you make edits
- * @author Brandon Fain
+ * @author Eunice Lee
  */
 
 public class WordGram {
@@ -22,7 +22,13 @@ public class WordGram {
 	 */
 	public WordGram(String[] source, int start, int size) {
 		// TODO correctly implement constructor
-		myWords = new String[]{source[start]};
+		myWords = new String[size];
+		myToString = "";
+		myHash = 0;
+
+		for (int i=0; i<size; i++) {
+			myWords[i] = source[start+i];
+		}
 	}
 
 
@@ -34,7 +40,7 @@ public class WordGram {
 	 */
 	public String wordAt(int index) {
 		// TODO correctly implement wordAt
-		return "";
+		return myWords[index];
 	}
 
 
@@ -44,7 +50,7 @@ public class WordGram {
 	 */
 	public int length() {
 		// TODO correctly implement length 
-		return 0;
+		return myWords.length;
 	}
 
 
@@ -59,9 +65,16 @@ public class WordGram {
 		}
 		WordGram other = (WordGram) o;
 		// TODO complete correct implementation of equals (above is correct)
+		
+		if (other.myWords.length == this.myWords.length) {
+			for (int i=0; i<myWords.length; i++) {
+				if (other.wordAt(i).equals(this.myWords[i])) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
-
 
 	/**
 	 * Returns a hashCode for WordGram object equal to 
@@ -71,7 +84,8 @@ public class WordGram {
 	@Override
 	public int hashCode() {
 		// TODO correctly implement hashCode
-		return 0;
+		myHash = this.toString().hashCode();
+		return myHash;
 	}
 
 
@@ -85,7 +99,12 @@ public class WordGram {
 	 */
 	public WordGram shiftAdd(String last) {
 		// TODO correctly implement shiftAdd
-		return this;
+		WordGram newOther = new WordGram(myWords, 0, myWords.length);
+		for (int k = 1; k < myWords.length; k++) {
+			newOther.myWords[k-1] = this.myWords[k];
+		}
+		newOther.myWords[newOther.length() - 1] = last;
+		return newOther;
 	}
 
 
@@ -96,6 +115,7 @@ public class WordGram {
 	@Override
 	public String toString() {
 		// TODO correctly implement toString
-		return "";
+		myToString = String.join(" ", myWords);
+		return myToString;
 	}
 }
