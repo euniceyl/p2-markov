@@ -70,11 +70,11 @@ public class WordGram {
 			return false;
 		}
 		for (int i=0; i<myWords.length; i++) {
-			if(other.wordAt(i).equals(this.myWords[i])) {
-				return true;
+			if(!other.wordAt(i).equals(this.myWords[i])) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	/**
