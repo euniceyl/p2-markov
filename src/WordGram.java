@@ -3,6 +3,7 @@
  * sequence of words.
  * For use in Compsci 201, Duke University, Fall 2022
  * Add yourself as an author when you make edits
+ * @author Brandon Fain
  * @author Eunice Lee
  */
 
@@ -115,6 +116,9 @@ public class WordGram {
 	@Override
 	public String toString() {
 		// TODO correctly implement toString
+		if (!myToString.equals("")) {
+			return myToString;
+		}
 		myToString = String.join(" ", myWords);
 		return myToString;
 	}

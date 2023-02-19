@@ -24,8 +24,8 @@ public class MarkovDriver {
 		String text = TextSource.textFromFile(f);
 
 		// only one line below should be uncommented
-		MarkovInterface generator = new BaseMarkov(MODEL_ORDER);
-		//MarkovInterface generator = new HashMarkov(MODEL_ORDER);
+		// MarkovInterface generator = new BaseMarkov(MODEL_ORDER);
+		MarkovInterface generator = new HashMarkov(MODEL_ORDER);
 		
 		generator.setSeed(RANDOM_SEED);
 
