@@ -35,6 +35,7 @@ public class HashMarkov implements MarkovInterface {
         if (!myMap.containsKey(finalOne)) {
             myMap.put(finalOne, finalList);
         }
+        myMap.get(finalOne).add("");
 	}
 
     public List<String> getFollows(WordGram wgram) {
