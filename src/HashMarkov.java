@@ -30,12 +30,13 @@ public class HashMarkov implements MarkovInterface {
             }
             myMap.get(other).add(next);
         }
+        
 
-        WordGram finalOne = new WordGram(myWords, myWords.length - myOrder, myOrder);
-        ArrayList<String> finalList = new ArrayList<>();
-        if (!myMap.containsKey(finalOne)) {
-            myMap.put(finalOne, finalList);
-        }
+        //WordGram finalOne = new WordGram(myWords, myWords.length - myOrder, myOrder);
+        //ArrayList<String> finalList = new ArrayList<>();
+        //if (!myMap.containsKey(finalOne)) {
+        //    myMap.put(finalOne, finalList);
+        //}
 	}
 
     public List<String> getFollows(WordGram wgram) {
