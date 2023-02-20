@@ -17,13 +17,22 @@ public class HashMarkov implements MarkovInterface {
 
         for (int i = 0; i < myWords.length - myOrder; i++) {
             WordGram other = new WordGram(myWords, i, myOrder);
+            String next = myWords[i + myOrder];
+
             ArrayList<String> list = new ArrayList<>();
             if (!myMap.containsKey(other)) {
                 myMap.put(other, list);
             }
-            List<String> finalList = myMap.get(other);
-            finalList.add(myWords[i + myOrder]);
-            myMap.put(other, finalList);
+            myMap.get(other).add(next);
+
+            WordGram finalOne = new WordGram(myWords, myWords.length - myOrder, myOrder);
+            ArrayList<String> finalList = new ArrayList<>();
+            if (!myMap.containsKey(finalOne)) {
+                myMap.put(finalOne, finalList);
+            }
+            //List<String> finalList = myMap.get(other);
+            //finalList.add(myWords[i + myOrder]);
+            //myMap.putIfAbsent(other, finalList);
         }
 	}
 
