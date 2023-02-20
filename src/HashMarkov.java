@@ -13,6 +13,7 @@ public class HashMarkov implements MarkovInterface {
     public HashMarkov(int order){
 		myOrder = order;
 		myRandom = new Random();
+        myMap = new HashMap<WordGram, List<String>>();
 	}
 
     public void setTraining(String text){
@@ -35,7 +36,6 @@ public class HashMarkov implements MarkovInterface {
         if (!myMap.containsKey(finalOne)) {
             myMap.put(finalOne, finalList);
         }
-        myMap.get(finalOne).add("");
 	}
 
     public List<String> getFollows(WordGram wgram) {
@@ -43,9 +43,7 @@ public class HashMarkov implements MarkovInterface {
             ArrayList<String> empty = new ArrayList<>();
             return empty;
         }
-        else {
-            return myMap.get(wgram);
-        }
+        return myMap.get(wgram);
 	}
 
     public String getRandomText(int length){
