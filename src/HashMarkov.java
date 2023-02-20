@@ -42,53 +42,26 @@ public class HashMarkov implements MarkovInterface {
         return myMap.get(wgram);
 	}
 
-    private String getNext(WordGram wgram) {
-		List<String> follows = getFollows(wgram);
-		if (follows.size() == 0) {
-			int randomIndex = myRandom.nextInt(myWords.length);
-            follows.add(myWords[randomIndex]);
-		}
-		int randomIndex = myRandom.nextInt(follows.size());
-		return follows.get(randomIndex);
-		
-	}
-
     public String getRandomText(int length){
 		ArrayList<String> randomWords = new ArrayList<>(length);
 		int index = myRandom.nextInt(myWords.length - myOrder + 1);
 		WordGram current = new WordGram(myWords,index,myOrder);
 		randomWords.add(current.toString());
 
-        for(int k=0; k < length-myOrder; k += 1) {
-            ArrayList<String> follows = (ArrayList<String>) getFollows(current);
-            String next;
+		for(int k=0; k < length-myOrder; k++) {
+            List<String> follows = getFollows(current);
             if (follows.size() == 0) {
-                int randomIndex = myRandom.nextInt(myWords.length);
-                next = myWords[randomIndex];
+                break;
             }
-            else {
-                next = follows.get(myRandom.nextInt(follows.size()));
+            index = myRandom.nextInt(follows.size());
+            String nextWord = follows.get(index);
+            if (nextWord.equals("")) {
+                break;
             }
-            randomWords.add(next);
-            current = current.shiftAdd("");
-        }
-        
-		return String.join(" ", randomWords).trim();
-
-		//for(int k=0; k < length-myOrder; k++) {
-        //    List<String> follows = getFollows(current);
-        //    if (follows.size() == 0) {
-        //        break;
-        //    }
-        //    index = myRandom.nextInt(follows.size());
-        //    String nextWord = follows.get(index);
-        //    if (nextWord.equals("")) {
-        //        break;
-        //    }
-        //    randomWords.add(nextWord);
-        //    current = current.shiftAdd(nextWord);
-		//}
-		//return String.join(" ", randomWords);
+            randomWords.add(nextWord);
+            current = current.shiftAdd(nextWord);
+		}
+		return String.join(" ", randomWords);
 	}
 
     public int getOrder() {
