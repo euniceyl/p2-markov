@@ -6,6 +6,10 @@ public class HashMarkov implements MarkovInterface {
 	protected int myOrder;
     protected HashMap<WordGram, List<String>> myMap = new HashMap<>();
 
+    public HashMarkov() {
+        this(2);
+    }
+
     public HashMarkov(int order){
 		myOrder = order;
 		myRandom = new Random();
@@ -24,15 +28,12 @@ public class HashMarkov implements MarkovInterface {
                 myMap.put(other, list);
             }
             myMap.get(other).add(next);
+        }
 
-            WordGram finalOne = new WordGram(myWords, myWords.length - myOrder, myOrder);
-            ArrayList<String> finalList = new ArrayList<>();
-            if (!myMap.containsKey(finalOne)) {
-                myMap.put(finalOne, finalList);
-            }
-            //List<String> finalList = myMap.get(other);
-            //finalList.add(myWords[i + myOrder]);
-            //myMap.putIfAbsent(other, finalList);
+        WordGram finalOne = new WordGram(myWords, myWords.length - myOrder, myOrder);
+        ArrayList<String> finalList = new ArrayList<>();
+        if (!myMap.containsKey(finalOne)) {
+            myMap.put(finalOne, finalList);
         }
 	}
 
