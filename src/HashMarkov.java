@@ -49,15 +49,19 @@ public class HashMarkov implements MarkovInterface {
 		randomWords.add(current.toString());
 
 		for(int k=0; k < length-myOrder; k++) {
+            String nextWord="";
             List<String> follows = getFollows(current);
             if (follows.size() == 0) {
-                break;
+                index = myRandom.nextInt(myWords.length);
+                 nextWord = myWords[index];
             }
-            index = myRandom.nextInt(follows.size());
-            String nextWord = follows.get(index);
-            if (nextWord.equals("")) {
-                break;
+            else {
+                index = myRandom.nextInt(follows.size());
+                 nextWord = follows.get(index);
             }
+            //if (nextWord.equals("")) {
+            //    break;
+            //}
             randomWords.add(nextWord);
             current = current.shiftAdd(nextWord);
 		}
