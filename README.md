@@ -62,7 +62,7 @@ Rather than calculating these probabilities explicitly, our code will use them i
 
 ## JUnit Tests
 
-To help test your `WordGram` and `HashMarkov` implementations, *unit tests* in `WordGramTest.java` and `MarkovTest.java` are used, both located in the `src` folder. 
+To test our `WordGram` and `HashMarkov` implementations, *unit tests* in `WordGramTest.java` and `MarkovTest.java` are used.
 
 <details>
 <summary>Expand here for screenshot of getModel in MarkovTest</summary>
@@ -235,3 +235,5 @@ Unlike `BaseMarkov`, our implementation does *not* loop over the words of the tr
 `getOrder()` is a getter method that returns the order of the Markov model, stored in an instance variable. `setSeed()` calls the `setSeed()` method of the random number generator instance variable and pass the corresponding random seed.
 
 </details>
+
+Coursework from Duke CS 201: Data Structures and Algorithms.
